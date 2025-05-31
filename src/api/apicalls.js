@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://fancy-alfajores-b52bf1.netlify.app/.netlify/functions/api';
 
 export const fetchCategories = () => {
     return new Promise((resolve) => {
