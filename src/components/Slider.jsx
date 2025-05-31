@@ -27,8 +27,7 @@ const Slider = () => {
     useEffect(() => {
         const fetchSlides = async () => {
             const res = await fetchSliders();
-            console.log(res);
-            // setSlides()
+            setSlides(res)
         }
         fetchSlides();
     }, [])

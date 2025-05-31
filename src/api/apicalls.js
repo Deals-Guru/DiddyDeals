@@ -31,7 +31,10 @@ export const fetchCategories = () => {
 
 export const fetchCategoryProducts = async (category) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/products?category=${category}`);
+        const response = await fetch(`${API_BASE_URL}/products?category=${category}`, {
+            method: 'GET',
+            mode: 'cors',
+        });
         if (!response.ok) throw new Error('Failed to fetch featured products');
         return await response.json();
     } catch (error) {
@@ -55,6 +58,7 @@ export const createProduct = async (productData) => {
 
         const response = await fetch(`${API_BASE_URL}/admin/products`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'x-admin-token': token
@@ -222,10 +226,10 @@ export const fetchProducts = async () => {
 
 export const fetchSliders = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/admin/sliders`, {
-      headers: {
-        'x-admin-token': localStorage.getItem('adminToken') || ''
-      }
+    const response = await fetch(`${API_BASE_URL}/products/sliders`, {
+    //   headers: {
+    //     'x-admin-token': localStorage.getItem('adminToken') || ''
+    //   }
     });
     
     if (!response.ok) throw new Error('Failed to fetch sliders');
