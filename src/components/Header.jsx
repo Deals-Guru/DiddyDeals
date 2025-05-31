@@ -1,0 +1,32 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const Header = () => {
+  return (
+    <header>
+      <div className="header-container container">
+        <div className="logo">
+          <FontAwesomeIcon icon="bolt" />
+          <span>Diddy Deals</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#" className="active">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div className="nav-icons">
+          <FontAwesomeIcon icon="search" />
+          <FontAwesomeIcon icon="user" />
+          <FontAwesomeIcon icon="shopping-cart" />
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
