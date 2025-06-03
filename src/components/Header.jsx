@@ -6,10 +6,12 @@ const Header = () => {
     <header>
       <div className="header-container container">
         <div className="logo">
-          <FontAwesomeIcon icon="bolt" />
+          {/* <FontAwesomeIcon icon="bolt" /> */}
+          <img src="/logo.png" alt="Diddy Deals Logo" width={52} height={52} />
           <span>Diddy Deals</span>
+          <div style={{height: '1px', width: '90%', backgroundColor: '#d2a533', position: 'absolute', top: '46px', left: '30px'}}></div>
         </div>
-        <nav>
+        {/* <nav>
           <ul>
             <li><a href="#" className="active">Home</a></li>
             <li><a href="#">Categories</a></li>
@@ -18,11 +20,11 @@ const Header = () => {
             <li><a href="#">New Arrivals</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
-        </nav>
+        </nav> */}
         <div className="nav-icons">
           <FontAwesomeIcon icon="search" />
-          <FontAwesomeIcon icon="user" />
-          <FontAwesomeIcon icon="shopping-cart" />
+          {/* <FontAwesomeIcon icon="user" />
+          <FontAwesomeIcon icon="shopping-cart" /> */}
         </div>
       </div>
     </header>

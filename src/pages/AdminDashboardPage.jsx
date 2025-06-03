@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import AuthForm from '../components/admin/AuthForm';
 import ProductTable from '../components/admin/ProductTable';
 import SliderGrid from '../components/admin/SliderGrid';
 import ProductModal from '../components/admin/ProductModal';

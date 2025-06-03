@@ -8,6 +8,8 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
     name: '',
     description: '',
     price: '',
+    mrp: '',
+    off: '',
     affiliateLink: '',
     category: '',
     imageUrl: ''
@@ -29,6 +31,8 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
         name: '',
         description: '',
         price: '',
+        mrp: '',
+        off: '',
         affiliateLink: '',
         category: '',
         imageUrl: ''
@@ -96,6 +100,34 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
               type="number"
               name="price"
               value={formData.price}
+              onChange={handleChange}
+              className="form-input"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">M.R.P. (Rs)</label>
+            <input
+              type="number"
+              name="mrp"
+              value={formData.mrp}
+              onChange={handleChange}
+              className="form-input"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">off (%)</label>
+            <input
+              type="number"
+              name="off"
+              value={formData.off}
               onChange={handleChange}
               className="form-input"
               step="0.01"

@@ -49,7 +49,7 @@ const HomePage = () => {
           <div className="categories">
             {categories.map(category => (
               <CategoryCard key={category._id} category={category} onClick={() => {
-                console.log("Category selected")
+                console.log("Category selected - ", category?.name);
                 setSelectedCategory(category?.name)
               }}/>
             ))}

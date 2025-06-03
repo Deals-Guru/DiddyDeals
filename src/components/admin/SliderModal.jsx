@@ -62,7 +62,6 @@ const SliderModal = ({ slider, onCreate, onUpdate, onClose }) => {
               value={formData.title}
               onChange={handleChange}
               className="form-input"
-              required
             />
           </div>
           
@@ -74,7 +73,6 @@ const SliderModal = ({ slider, onCreate, onUpdate, onClose }) => {
               onChange={handleChange}
               className="form-input form-textarea"
               rows="3"
-              required
             ></textarea>
           </div>
           

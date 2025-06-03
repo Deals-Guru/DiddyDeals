@@ -8,17 +8,17 @@ const Slider = () => {
     //     {
     //       title: "Premium Headphones",
     //       description: "Experience crystal clear sound with our noise-cancelling headphones. Limited time offer!",
-    //       image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    //       imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     //     },
     //     {
     //       title: "Smart Watches",
     //       description: "Track your fitness and stay connected with our latest smartwatch collection.",
-    //       image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
+    //       imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
     //     },
     //     {
     //       title: "Home Appliances",
     //       description: "Upgrade your home with energy-efficient and smart appliances.",
-    //       image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+    //       imageUrl: "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
     //     }
     //   ];
 
@@ -49,7 +49,7 @@ const Slider = () => {
             nextSlide();
         }, 5000);
         return () => clearInterval(interval);
-    }, []);
+    }, [slides]);
 
     return (
         <div className="slider-container">
@@ -61,12 +61,13 @@ const Slider = () => {
                     <div
                         key={index}
                         className="slide"
-                        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slide.image})` }}
+                        style={{ backgroundImage: `url(${slide.imageUrl})`, cursor: 'pointer' }}
+                        onClick={() => window.open(slide.link, '_blank')}
                     >
                         <div className="slide-content">
                             <h2>{slide.title}</h2>
                             <p>{slide.description}</p>
-                            <a href="#" className="btn">Shop Now</a>
+                            {/* <a href={slide.link} className="btn" target="_blank">Shop Now</a> */}
                         </div>
                     </div>
                 ))}
