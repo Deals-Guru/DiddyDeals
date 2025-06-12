@@ -9,7 +9,7 @@ const CategoryCard = ({ category, onClick }) => {
       ></div>
       <div className="category-content">
         <h3>{category.name}</h3>
-        <p>Latest gadgets and devices</p>
+        <p>{category.tagLine}</p>
       </div>
     </div>
   );

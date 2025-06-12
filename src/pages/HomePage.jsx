@@ -4,6 +4,7 @@ import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
 import SectionTitle from '../components/SectionTitle';
 import { fetchCategories, fetchCategoryProducts } from '../api/apicalls';
+import Header from '../components/Header';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -41,6 +42,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Header onClick={() => setSelectedCategory('Featured')}/>
       <Slider />
       
       <div className="container py-10">

@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import './styles/App.css';
+import ProductPage from './pages/ProductPage';
 
 function App() {
   return (
@@ -13,7 +14,6 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Header />
             <HomePage />
             <Footer />
           </Route>
@@ -21,10 +21,13 @@ function App() {
           <Route path="/admin">
             <AdminDashboardPage />
           </Route>
+
+          <Route path="/product">
+            <ProductPage />
+          </Route>
           
           {/* Redirect to home for any other route */}
           <Route path="*">
-            <Header />
             <HomePage />
             <Footer />
           </Route>

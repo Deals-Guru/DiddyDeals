@@ -8,7 +8,7 @@
 :root {
   --primary: #1f379f;
   --secondary: #0d095e;
-  --accent: #f72585;
+  --accent: rgb(212 179 72);
   --light: #f8f9fa;
   --dark: #212529;
   --gray: #6c757d;
@@ -25,7 +25,7 @@ body {
 
 /* Global Styles */
 .container {
-  max-width: 1200px;
+  max-width: 1450px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -57,8 +57,8 @@ body {
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
 }
 
 /* Responsive Design */

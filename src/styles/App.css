@@ -22,10 +22,23 @@ header {
   align-items: center;
   position: relative;
   gap: 0.5rem;
+  cursor: pointer;
 }
 
 .logo svg {
   color: var(--accent);
+}
+.logoImg {
+  width: 52px;
+  height: 52px;
+}
+.logoLine {
+  height: 1px;
+  width: 90%; 
+  background-color: #d2a533;
+  position: absolute;
+  top: 46px;
+  left: 30px;
 }
 
 nav ul {
@@ -67,8 +80,10 @@ nav a:hover {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow);
-  height: 400px;
-  margin: 2rem auto;
+  height: 300px;
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 12px;
 }
 
 .slider {
@@ -219,10 +234,12 @@ nav a:hover {
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  height: 460px;
-  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -233,21 +250,59 @@ nav a:hover {
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product-img-container {
+  padding: 1.5rem 1.5rem 0;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-img {
-  height: 200px;
-  background-size: contain;
-  background-position: center;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.affiliate-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  background: rgba(231, 231, 255, 0.9);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.affiliate-icon:hover {
+  background: #e0e0ff;
+  transform: scale(1.1);
 }
 
 .product-content {
-  padding: 1rem 1.5rem;
-  height: calc(100% - 200px);
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+}
+.product-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 
@@ -258,56 +313,73 @@ nav a:hover {
 
 .pricing-section {
   display: flex;
-  margin-bottom: 8px;
-  gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2d3748;
 }
 
 .off-price {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .original-price {
-  font-size: 1.1rem;
-  color: #a4b0be;
+  font-size: 1rem;
+  color: #718096;
   text-decoration: line-through;
-  font-weight: 500;
 }
 
 .discount-percent {
   background: #ffeaea;
-  color: #ff4757;
-  padding: 4px 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  color: #e53e3e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
-.product-price {
-  font-size: 1.5rem;
-  color: #2f3542;
-  font-weight: 700;
-}
-
 .product-description {
-  color: var(--gray);
+  color: #4a5568;
   font-size: 0.9rem;
+  line-height: 1.5;
   margin-bottom: 1rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .product-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  font-size: 0.9rem;
-  color: var(--gray);
-  flex: 1;
+  margin-top: auto;
 }
 
 .rating {
   color: #ffc107;
+}
+
+.buy-btn {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buy-btn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
 }
 
 /* Footer Styles */
@@ -426,17 +498,45 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
   }
+  .logo {
+    font-size: 1.44rem;
+    font-weight: 700;
+  }
+  
+  .logoImg{
+    width: 44px;
+    height: 44px;
+  }
+  .logoLine {
+    top: 39px;
+    left: 30px;
+  }
+  header {
+    padding: 0.5rem;
+  }
 
   .slider-container {
-    height: 250px;
+    height: 110px;
+    width: 100%;
+    border-radius: 0px;
+  }
+
+  .slider-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .slider-dot {
+    width: 8px;
+    height: 8px;
   }
 
   .slide-content {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .slide-content h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .slide-content p {
@@ -467,6 +567,7 @@ footer {
   }
   .pricing-section {
     flex-direction: column-reverse;
+    align-items: flex-start;
     gap: 2px;
   }
   .original-price {
@@ -475,5 +576,16 @@ footer {
   .discount-percent {
     font-size: 0.8rem;
     padding: 2px 8px;
+  }
+  .category-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  .category-content p {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  .category-content {
+    padding: 1rem;
   }
 }

@@ -11,6 +11,7 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
     mrp: '',
     off: '',
     affiliateLink: '',
+    shareCode: '',
     category: '',
     imageUrl: ''
   });
@@ -21,6 +22,7 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
     { id: '3', name: 'Fashion' },
     { id: '4', name: 'Beauty' },
     { id: '5', name: 'Featured' },
+    { id: '6', name: 'Fitness'}
   ];
   
   useEffect(() => {
@@ -34,6 +36,7 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
         mrp: '',
         off: '',
         affiliateLink: '',
+        shareCode: '',
         category: '',
         imageUrl: ''
       });
@@ -142,6 +145,18 @@ const ProductModal = ({ product, onCreate, onUpdate, onClose }) => {
               type="url"
               name="affiliateLink"
               value={formData.affiliateLink}
+              onChange={handleChange}
+              className="form-input"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Share Code</label>
+            <input
+              type="text"
+              name="shareCode"
+              value={formData.shareCode}
               onChange={handleChange}
               className="form-input"
               required

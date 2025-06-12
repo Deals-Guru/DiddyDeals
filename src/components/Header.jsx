@@ -1,15 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Header = () => {
+const Header = ({onClick}) => {
   return (
     <header>
       <div className="header-container container">
-        <div className="logo">
+        <div className="logo" onClick={onClick}>
           {/* <FontAwesomeIcon icon="bolt" /> */}
-          <img src="/logo.png" alt="Diddy Deals Logo" width={52} height={52} />
-          <span>Diddy Deals</span>
-          <div style={{height: '1px', width: '90%', backgroundColor: '#d2a533', position: 'absolute', top: '46px', left: '30px'}}></div>
+          <img src="/logo.png" alt="Diddy Deals Logo" className='logoImg' />
+          <span style={{color: 'rgb(212 179 72)', fontWeight: 600}}>Diddy Deals</span>
+          <div className='logoLine'></div>
         </div>
         {/* <nav>
           <ul>

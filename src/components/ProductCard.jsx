@@ -1,5 +1,6 @@
-import React from 'react';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const ProductCard = ({ product }) => {
   const handleBuyNow = () => {
@@ -7,32 +8,48 @@ const ProductCard = ({ product }) => {
     window.open(product.affiliateLink, '_blank');
   };
 
+  const copyHandler = (event) => {
+    navigator.clipboard.writeText(`https://diddy-deals.netlify.app/product?code=${product.shareCode}`);
+    event.stopPropagation();
+  }
+
   return (
-    <div className="product-card" onClick={(handleBuyNow)}>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <img 
-          className="product-img" 
-          src={`${product.imageUrl}`}
-        />
-      </div>
-      <div className="product-content">
-        <h3>{product.name}</h3>
-        <div class="pricing-section">
-        <div className="product-price">₹ {product.price.toFixed(2)}</div>
-        <div class="off-price">
-          {product.mrp && <span class="original-price">₹ {product.mrp}</span>}
-          {product.off && <span class="discount-percent">- {product.off}%</span>}
-        </div>
-      </div>
-        <div className="product-description">{product.description}</div>
-        <div className="product-meta">
-          <div className="actions">
-            <button className="btn" onClick={handleBuyNow}>Buy Now</button>
+  <div className="product-card" onClick={handleBuyNow}>
+    <div className="affiliate-icon">
+      <FontAwesomeIcon icon={faLink} onClick={copyHandler} />
+    </div>
+    
+    <div className="product-img-container">
+      <img 
+        className="product-img" 
+        src={product.imageUrl}
+        alt={product.name}
+      />
+    </div>
+    
+    <div className="product-content">
+      <h3 className="product-title">{product.name}</h3>
+      
+      <div className="pricing-section">
+        <div className="product-price">₹{product.price.toFixed(2)}</div>
+        {product.mrp && (
+          <div className="off-price">
+            <span className="original-price">₹{product.mrp}</span>
+            {product.off && (
+              <span className="discount-percent">-{product.off}%</span>
+            )}
           </div>
-        </div>
+        )}
+      </div>
+      
+      <div className="product-description">{product.description}</div>
+      
+      <div className="product-meta">
+        <button className="buy-btn">Buy Now</button>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default ProductCard;
