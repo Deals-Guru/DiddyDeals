@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import SectionTitle from '../components/SectionTitle';
 import { fetchCategories, fetchCategoryProducts } from '../api/apicalls';
 import Header from '../components/Header';
+import LoadingPage from './LoadingPage';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -34,9 +35,7 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <div className="container text-center py-20">
-        <div className="loader">Loading...</div>
-      </div>
+      <LoadingPage />
     );
   }
 
