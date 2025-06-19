@@ -94,17 +94,25 @@ export default function ProductPage() {
   return (
     product ? 
     <div className="min-h-screen bg-gray-50">
-      <Header onClick={() => history.push('/')} setProducts={() => {}} allProducts={[]} />
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <nav className="text-sm text-gray-600">
+            Home / Electronics / Headphones / {product.name}
+          </nav>
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* Product Images */}
-          <div className="space-y-4">
+        {/* Main Product Section - Full Screen Layout */}
+        <div className="min-h-screen flex flex-col lg:flex-row gap-6">
+          {/* Left Side - Product Images (35-45% width) */}
+          <div className="w-full lg:w-2/5 space-y-4 lg:sticky lg:top-8 lg:h-fit">
             <div className="relative bg-white rounded-lg overflow-hidden shadow-lg">
               <img
                 src={product.images[selectedImage]}
                 alt={product.name}
-                className="w-full h-96 object-contain p-4"
+                className="w-full h-80 lg:h-96 object-contain p-4"
               />
               <button
                 onClick={prevImage}
@@ -121,12 +129,12 @@ export default function ProductPage() {
             </div>
             
             {/* Thumbnail Images */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 overflow-x-auto pb-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`w-20 h-20 border-2 rounded-lg overflow-hidden ${
+                  className={`flex-shrink-0 w-20 h-20 border-2 rounded-lg overflow-hidden ${
                     selectedImage === index ? 'border-blue-500' : 'border-gray-200'
                   }`}
                 >
@@ -136,14 +144,15 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* Product Info */}
-          <div className="space-y-6">
-            <div>
+          {/* Right Side - Product Info & Deals (55-65% width) */}
+          <div className="w-full lg:w-3/5 space-y-6">
+            {/* Product Basic Info */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
               <p className="text-sm text-gray-600 mb-2">{product.brand}</p>
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
               
               {/* Rating */}
-              {product.rating && <div className="flex items-center space-x-2 mb-4">
+              {product.rating && <div className="flex items-center space-x-2 mb-6">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -159,114 +168,96 @@ export default function ProductPage() {
                 <span className="text-lg font-semibold">{product.rating}</span>
                 <span className="text-gray-600">({product.reviews.toLocaleString()} reviews)</span>
               </div>}
-            </div>
 
-            {/* Key Features */}
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-gray-900 mb-2">Key Highlights</h3>
-              <ul className="space-y-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {product.highlights.map((highlight, index) => (
-                  <li key={index} className="text-sm text-gray-700 flex items-center">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    {highlight}
-                  </li>
+                  <div key={index} className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                    <span className="text-sm text-gray-700">{highlight}</span>
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <Shield className="w-5 h-5 text-green-500" />
-                <span>Secure Payment</span>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <Truck className="w-5 h-5 text-blue-500" />
-                <span>Fast Delivery</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <RotateCcw className="w-5 h-5 text-purple-500" />
-                <span>Easy Returns</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <Award className="w-5 h-5 text-yellow-500" />
-                <span>Warranty</span>
-              </div>
-            </div>
 
-            {/* Action Buttons */}
-            <div className="flex space-x-3">
-              {/* <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Heart className="w-5 h-5" />
-                <span>Wishlist</span>
-              </button> */}
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Share2 className="w-5 h-5" />
-                <span>Share</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Deal Blocks */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Best Deals Available</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {product.deals.map((deal, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow relative">
-                {deal.badge && (
-                  <div className={`absolute top-0 right-0 ${deal.color} text-white px-3 py-1 rounded-bl-lg rounded-tr-lg text-xs font-semibold`}>
-                    {deal.badge}
-                  </div>
-                )}
-                
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className={`w-12 h-12 ${deal.color} rounded-lg flex items-center justify-center text-white text-2xl`}>
-                    {deal.logo}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{deal.platform}</h3>
-                    <p className="text-sm text-gray-600">Trusted Partner</p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl font-bold text-gray-900">₹{deal.price.toLocaleString()}</span>
-                    <span className="text-lg text-gray-500 line-through">₹{product.originalPrice.toLocaleString()}</span>
-                    <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded">
-                      {deal.discount}% OFF
-                    </span>
-                  </div>
-                  
-                  {/* <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Cashback:</span>
-                    <span className="font-semibold text-green-600">₹{deal.cashback}</span>
-                  </div> */}
-                  
-                  {/* <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Final Price:</span>
-                    <span className="font-bold text-lg text-gray-900">₹{(deal.price - deal.cashback).toLocaleString()}</span>
-                  </div> */}
-                </div>
-
-                <button
-                  onClick={() => window.open(deal.link, '_blank')}
-                  className={`w-full ${deal.color} text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2`}
-                >
-                  <span>Get Deal</span>
-                  <span>→</span>
+              {/* Action Buttons */}
+              {/* <div className="flex space-x-3">
+                <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                  <Share2 className="w-4 h-4" />
+                  <span>Share</span>
                 </button>
+              </div> */}
+            </div>
+
+            {/* Deal Blocks - Prominent Position */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-lg mr-3">🔥</span>
+                Best Deals Available
+              </h2>
+              
+              {/* Desktop: Horizontal scroll, Mobile: Vertical stack */}
+              <div className="lg:flex lg:space-x-4 lg:overflow-x-auto lg:pb-4 space-y-4 lg:space-y-0">
+                {product.deals.map((deal, index) => (
+                  <div key={index} className="lg:flex-shrink-0 lg:w-80 border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow relative bg-gradient-to-br from-white to-gray-50">
+                    {deal.badge && (
+                      <div className={`absolute top-0 right-0 ${deal.color} text-white px-3 py-1 rounded-bl-lg rounded-tr-lg text-xs font-semibold`}>
+                        {deal.badge}
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className={`w-12 h-12 ${deal.color} rounded-lg flex items-center justify-center text-white text-2xl shadow-md`}>
+                        {deal.logo}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">{deal.platform}</h3>
+                        <p className="text-sm text-gray-600">Trusted Partner</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-baseline space-x-2">
+                        <span className="text-2xl font-bold text-gray-900">₹{deal.price.toLocaleString()}</span>
+                        <span className="text-lg text-gray-500 line-through">₹{product.originalPrice.toLocaleString()}</span>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                          {deal.discount}% OFF
+                        </span>
+                        <span className="text-sm font-semibold text-blue-600">
+                          Cashback: ₹{deal.cashback}
+                        </span>
+                      </div>
+                      
+                      <div className="bg-gray-100 p-3 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Final Price:</span>
+                          <span className="font-bold text-xl text-green-600">₹{(deal.price - deal.cashback).toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => window.open(deal.link, '_blank')}
+                      className={`w-full ${deal.color} text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 hover:scale-105 transition-all flex items-center justify-center space-x-2 shadow-md`}
+                    >
+                      <span>Get Deal</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
+
+
 
         {/* Product Details Tabs */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="border-b border-gray-200">
             <nav className="flex space-x-8 px-6">
-              {['description', 'specifications'].map((tab) => (
+              {['description', 'specifications', 'reviews'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setSelectedTab(tab)}
@@ -313,7 +304,7 @@ export default function ProductPage() {
               </div>
             )}
             
-            {/* {selectedTab === 'reviews' && (
+            {selectedTab === 'reviews' && (
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="text-center">
@@ -364,7 +355,7 @@ export default function ProductPage() {
                   ))}
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>
