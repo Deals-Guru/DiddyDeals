@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import './styles/App.css';
+import RedirectPage from './pages/RedirectPage';
 import ProductPage from './pages/ProductPage';
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
           </Route>
 
           <Route path="/product">
+            <RedirectPage />
+          </Route>
+
+          <Route path="/product-info/:id">
             <ProductPage />
           </Route>
           

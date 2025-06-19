@@ -1,5 +1,6 @@
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const ProductCard = ({ product }) => {
@@ -7,6 +8,7 @@ const ProductCard = ({ product }) => {
     console.log(`Buying product: ${product._id}`);
     window.open(product.affiliateLink, '_blank');
   };
+  const history = useHistory();
 
   const copyHandler = (event) => {
     navigator.clipboard.writeText(`https://diddy-deals.netlify.app/product?code=${product.shareCode}`);
@@ -14,7 +16,7 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-  <div className="product-card" onClick={handleBuyNow}>
+  <div className="product-card" onClick={() => history.push(`/product-info/${product._id}`)}>
     <div className="affiliate-icon">
       <FontAwesomeIcon icon={faLink} onClick={copyHandler} />
     </div>

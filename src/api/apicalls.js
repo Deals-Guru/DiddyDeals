@@ -1,6 +1,6 @@
 // const API_BASE_URL = 'https://fancy-alfajores-b52bf1.netlify.app/.netlify/functions/api';
-const API_BASE_URL = 'https://giant-comfortable-brand.glitch.me';
-// const API_BASE_URL = 'http://localhost:5000'
+// const API_BASE_URL = 'https://giant-comfortable-brand.glitch.me';
+const API_BASE_URL = 'http://localhost:5000'
 
 export const fetchCategories = () => {
     return new Promise((resolve) => {
@@ -252,3 +252,14 @@ export const fetchSliders = async () => {
     throw error;
   }
 };
+
+export const fetchProductDetails = async (id) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/products/product-detail/${id}`);
+        if (!response.ok) throw new Error('Failed to fetch sliders');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching sliders:', error);
+        throw error;
+    }
+}

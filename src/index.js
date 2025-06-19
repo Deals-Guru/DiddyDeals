@@ -10,6 +10,7 @@ import {
   faChevronLeft, faChevronRight, faStar, faStarHalfAlt 
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { BrowserRouter } from 'react-router-dom';
 
 library.add(
   faBolt, faSearch, faUser, faShoppingCart, 
@@ -20,6 +21,8 @@ library.add(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );

@@ -119,14 +119,16 @@ nav a:hover {
   border: none;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  /* font-size: 0.95rem; */
+  font-size: 0.9rem;
   transition: all 0.3s ease;
+  color: #292b30;
 }
 
 .search-box input:focus {
   outline: none;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   background: white;
+  color: black;
 }
 
 .search-icon {
