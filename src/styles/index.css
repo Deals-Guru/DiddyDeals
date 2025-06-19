@@ -73,6 +73,9 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
   }
+  .container {
+    padding: 0 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -80,5 +83,8 @@ body {
   .products {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+  }
+  .container {
+    padding: 0 0.5rem;
   }
 }

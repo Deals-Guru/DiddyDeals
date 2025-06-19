@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import Slider from '../components/Slider';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
@@ -9,7 +9,8 @@ import LoadingPage from './LoadingPage';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('Featured');
 
@@ -22,7 +23,8 @@ const HomePage = () => {
         ]);
         
         setCategories(categoriesData);
-        setFeaturedProducts(productsData);
+        setProducts(productsData);
+        setAllProducts(productsData); 
         setLoading(false);
       } catch (error) {
         console.error("Error loading data:", error);
@@ -31,7 +33,11 @@ const HomePage = () => {
     };
 
     loadData();
-  }, [selectedCategory]);
+  }, []);
+
+  useEffect(() => {
+    setProducts(allProducts.filter(product => selectedCategory !== 'Featured' ? product.category === selectedCategory : product.category !== 'Featured'));
+  }, [selectedCategory])
 
   if (loading) {
     return (
@@ -41,7 +47,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header onClick={() => setSelectedCategory('Featured')}/>
+      <Header onClick={() => setSelectedCategory('Featured')} setProducts={setProducts} allProducts={allProducts}/>
       <Slider />
       
       <div className="container py-10">
@@ -50,7 +56,6 @@ const HomePage = () => {
           <div className="categories">
             {categories.map(category => (
               <CategoryCard key={category._id} category={category} onClick={() => {
-                console.log("Category selected - ", category?.name);
                 setSelectedCategory(category?.name)
               }}/>
             ))}
@@ -60,7 +65,7 @@ const HomePage = () => {
         <section className="featured-products">
           <SectionTitle title={`${selectedCategory} Products`} />
           <div className="products">
-            {featuredProducts.map(product => (
+            {products.map(product => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
