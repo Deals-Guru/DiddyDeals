@@ -33,18 +33,18 @@ const ProductTable = ({ products, onAddProduct, onEditProduct, onDeleteProduct }
                   <div className="product-info">
                     <img 
                       className="product-image" 
-                      src={product.imageUrl} 
+                      src={product.imageUrl || product.images[0]} 
                       alt={product.name} 
                     />
                     <div>
                       <div className="product-name">{product.name}</div>
                       <div className="product-description">
-                        {product.description.substring(0, 40)}...
+                        {product.description[0].substring(0, 40)}...
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>Rs {product.price.toFixed(2)}</td>
+                <td>Rs {product?.price?.toFixed(2)}</td>
                 <td>{product.category}</td>
                 <td>
                   <button

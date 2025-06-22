@@ -1,17 +1,36 @@
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const ProductCard = ({ product }) => {
-  const handleBuyNow = () => {
-    console.log(`Buying product: ${product._id}`);
-    window.open(product.affiliateLink, '_blank');
+  const handleBuyNow = (event, deal) => {
+    console.log(`Buying product: ${product._id} with deal: ${deal.link}`);
+    window.open(deal.link, '_blank');
+    event.stopPropagation();
   };
   const history = useHistory();
 
+  const [cheapestDeal, setCheapestDeal] = useState(null);
+  useEffect(() => {
+    if (product && product.deals && product.deals.length > 0) {
+    const cheapest = product.deals.reduce((min, current) => {
+      return current.price < min.price ? current : min;
+    });
+
+    console.log(cheapest);
+    
+    setCheapestDeal(cheapest);
+  }
+  }, [product]);
+
   const copyHandler = (event) => {
-    navigator.clipboard.writeText(`https://diddy-deals.netlify.app/product?code=${product.shareCode}`);
+    if (cheapestDeal && cheapestDeal.platform === 'Amazon') {
+      navigator.clipboard.writeText(`https://diddy-deals.netlify.app/product?code=${cheapestDeal.shareCode}`);
+    } else {
+      navigator.clipboard.writeText(`${cheapestDeal.link}`);
+    }
     event.stopPropagation();
   }
 
@@ -24,7 +43,7 @@ const ProductCard = ({ product }) => {
     <div className="product-img-container">
       <img 
         className="product-img" 
-        src={product.imageUrl}
+        src={product.imageUrl || product.images[0]}
         alt={product.name}
       />
     </div>
@@ -33,12 +52,12 @@ const ProductCard = ({ product }) => {
       <h3 className="product-title">{product.name}</h3>
       
       <div className="pricing-section">
-        <div className="product-price">₹{product.price.toFixed(2)}</div>
+        <div className="product-price">₹{cheapestDeal?.price?.toFixed(2)}</div>
         {product.mrp && (
           <div className="off-price">
             <span className="original-price">₹{product.mrp}</span>
-            {product.off && (
-              <span className="discount-percent">-{product.off}%</span>
+            {cheapestDeal?.discount && (
+              <span className="discount-percent">-{cheapestDeal?.discount}%</span>
             )}
           </div>
         )}
@@ -47,7 +66,7 @@ const ProductCard = ({ product }) => {
       <div className="product-description">{product.description}</div>
       
       <div className="product-meta">
-        <button className="buy-btn">Buy Now</button>
+        <button className="buy-btn" onClick={(e) => handleBuyNow(e, cheapestDeal)}>Buy Now</button>
       </div>
     </div>
   </div>

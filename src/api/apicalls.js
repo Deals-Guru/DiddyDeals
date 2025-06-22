@@ -1,6 +1,6 @@
 // const API_BASE_URL = 'https://fancy-alfajores-b52bf1.netlify.app/.netlify/functions/api';
-// const API_BASE_URL = 'https://giant-comfortable-brand.glitch.me';
-const API_BASE_URL = 'http://localhost:5000'
+const API_BASE_URL = 'https://giant-comfortable-brand.glitch.me';
+// const API_BASE_URL = 'http://localhost:5000'
 
 export const fetchCategories = () => {
     return new Promise((resolve) => {

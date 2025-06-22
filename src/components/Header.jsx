@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Header = ({ onClick, setProducts, allProducts }) => {
+const Header = ({ onClick, setProducts, allProducts, searchBar=true }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const searchInputRef = useRef(null);
   const handleKeyDown = (e) => {
@@ -19,7 +19,7 @@ const Header = ({ onClick, setProducts, allProducts }) => {
     } else {
       const filtered = allProducts.filter(product => 
         product.name.toLowerCase().includes(term.toLowerCase()) || 
-        product.description.toLowerCase().includes(term.toLowerCase())
+        product.description.some(str => str.toLowerCase().includes(term.toLowerCase()))
       );
       setProducts(filtered);
     }
@@ -34,7 +34,7 @@ const Header = ({ onClick, setProducts, allProducts }) => {
           <div className='logoLine'></div>
         </div>
         
-        <div className="search-box">
+        {searchBar && <div className="search-box">
           <input 
             ref={searchInputRef}
             type="text" 
@@ -45,7 +45,7 @@ const Header = ({ onClick, setProducts, allProducts }) => {
             onKeyDown={handleKeyDown}
           />
           <FontAwesomeIcon icon="search" className="search-icon" />
-        </div>
+        </div>}
       </div>
     </header>
   );
